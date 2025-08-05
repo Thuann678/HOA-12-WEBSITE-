@@ -3,113 +3,102 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Khóa học Hóa học 12</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>Khoá học Hóa học 12 - MapStudy Style</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    html, body {
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Poppins', sans-serif;
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
-      background-color: #f8f9fa;
     }
-    .login-box {
+    html, body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background-color: #f4f6f9;
+    }
+    .login-section, .main-section {
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       height: 100vh;
       width: 100vw;
-      background: linear-gradient(135deg, #00c6ff, #0072ff);
     }
-    .login-box form {
-      background: white;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-      width: 320px;
+    .login-box {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      width: 360px;
+      text-align: center;
     }
-    input[type="text"], input[type="password"] {
+    .login-box h2 {
+      margin-bottom: 24px;
+      color: #333;
+    }
+    .login-box input {
       width: 100%;
       padding: 12px;
-      margin: 12px 0;
+      margin-bottom: 16px;
       border: 1px solid #ccc;
       border-radius: 8px;
     }
-    button {
+    .login-box button {
       width: 100%;
       padding: 12px;
-      background-color: #28a745;
+      background-color: #007bff;
+      color: white;
       border: none;
       border-radius: 8px;
-      color: white;
-      font-weight: bold;
+      font-weight: 600;
       cursor: pointer;
-      transition: 0.3s;
+      transition: background-color 0.2s;
     }
-    button:hover {
-      background-color: #218838;
+    .login-box button:hover {
+      background-color: #0056b3;
     }
-    .container {
-      height: 100vh;
-      width: 100vw;
+    #error {
+      color: red;
+      margin-top: 10px;
+    }
+    .main-section {
       display: none;
-      flex-direction: row;
+      flex-direction: column;
     }
-    .sidebar {
-      width: 260px;
-      background: #343a40;
+    .navbar {
+      width: 100%;
+      background-color: #007bff;
       color: white;
-      height: 100vh;
-      padding-top: 20px;
-      box-sizing: border-box;
-    }
-    .sidebar h2 {
-      text-align: center;
+      padding: 16px 32px;
       font-size: 20px;
-      margin-bottom: 20px;
+      font-weight: 600;
     }
-    .sidebar a {
-      display: block;
-      padding: 14px 24px;
-      color: white;
-      text-decoration: none;
-      transition: 0.2s;
-    }
-    .sidebar a:hover {
-      background: #495057;
-    }
-    .main-content {
+    .pdf-container {
       flex-grow: 1;
-      height: 100vh;
+      width: 100%;
+      height: calc(100vh - 64px);
     }
     iframe {
       width: 100%;
-      height: 100vh;
+      height: 100%;
       border: none;
     }
   </style>
 </head>
 <body>
-  <div class="login-box" id="loginBox">
-    <form onsubmit="login(); return false;">
-      <h2>🔐 Đăng nhập khóa học Hóa 12</h2>
-      <input type="text" id="username" placeholder="Tài khoản" required>
-      <input type="password" id="password" placeholder="Mật khẩu" required>
-      <button type="submit">Đăng nhập</button>
-      <p id="error" style="color: red; text-align: center; margin-top: 10px;"></p>
-    </form>
+  <div class="login-section" id="loginBox">
+    <div class="login-box">
+      <h2>Đăng nhập vào khoá học Hóa 12</h2>
+      <input type="text" id="username" placeholder="Tài khoản">
+      <input type="password" id="password" placeholder="Mật khẩu">
+      <button onclick="login()">Đăng nhập</button>
+      <p id="error"></p>
+    </div>
   </div>
 
-  <div class="container" id="contentBox">
-    <div class="sidebar">
-      <h2>📚 Tài liệu Hóa 12</h2>
-      <a href="#" onclick="loadPDF()">📘 Sổ tay Hóa 12</a>
-    </div>
-    <div class="main-content">
-      <iframe id="pdfViewer" src=""></iframe>
+  <div class="main-section" id="mainContent">
+    <div class="navbar">📘 Khoá học Hóa 12 - Sổ tay ôn thi</div>
+    <div class="pdf-container">
+      <iframe id="pdfViewer" src="So-tay-Hoa-12.pdf"></iframe>
     </div>
   </div>
 
@@ -118,17 +107,13 @@
       const user = document.getElementById('username').value;
       const pass = document.getElementById('password').value;
       const error = document.getElementById('error');
+
       if (user === 'dmt2509' && pass === 'mt2509') {
         document.getElementById('loginBox').style.display = 'none';
-        document.getElementById('contentBox').style.display = 'flex';
-        loadPDF();
+        document.getElementById('mainContent').style.display = 'flex';
       } else {
         error.textContent = '❌ Sai tài khoản hoặc mật khẩu';
       }
-    }
-
-    function loadPDF() {
-      document.getElementById('pdfViewer').src = 'So-tay-Hoa-12.pdf';
     }
   </script>
 </body>
