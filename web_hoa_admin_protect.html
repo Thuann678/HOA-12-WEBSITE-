@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khóa học Hóa học 12</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f7fa;
+    }
+    .login-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .login-box form {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .container {
+      display: none;
+      height: 100vh;
+    }
+    .sidebar {
+      width: 220px;
+      background: #343a40;
+      color: white;
+      height: 100%;
+      float: left;
+      padding-top: 20px;
+    }
+    .sidebar h2 {
+      text-align: center;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    .sidebar a {
+      display: block;
+      padding: 12px 20px;
+      color: white;
+      text-decoration: none;
+    }
+    .sidebar a:hover {
+      background: #495057;
+    }
+    .main-content {
+      margin-left: 220px;
+      padding: 0;
+      height: 100vh;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box" id="loginBox">
+    <form onsubmit="login(); return false;">
+      <h2>🔐 Đăng nhập khóa học Hóa 12</h2>
+      <input type="text" id="username" placeholder="Tài khoản" required>
+      <input type="password" id="password" placeholder="Mật khẩu" required>
+      <button type="submit">Đăng nhập</button>
+      <p id="error" style="color: red; text-align: center; margin-top: 10px;"></p>
+    </form>
+  </div>
+
+  <div class="container" id="contentBox">
+    <div class="sidebar">
+      <h2>📚 Chương mục</h2>
+      <a href="#" onclick="loadPDF()">📘 Sổ tay Hóa 12</a>
+    </div>
+    <div class="main-content">
+      <iframe id="pdfViewer" src="So-tay-Hoa-12.pdf"></iframe>
+    </div>
+  </div>
+
+  <script>
+    function login() {
+      const user = document.getElementById('username').value;
+      const pass = document.getElementById('password').value;
+      const error = document.getElementById('error');
+      if (user === 'dmt2509' && pass === 'mt2509') {
+        document.getElementById('loginBox').style.display = 'none';
+        document.getElementById('contentBox').style.display = 'flex';
+      } else {
+        error.textContent = '❌ Sai tài khoản hoặc mật khẩu';
+      }
+    }
+
+    function loadPDF() {
+      document.getElementById('pdfViewer').src = 'So-tay-Hoa-12.pdf';
+    }
+  </script>
+</body>
+</html>
